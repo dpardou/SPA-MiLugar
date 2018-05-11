@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>Mi Lugar</title>
+        <link rel="stylesheet" href="./stylesheets/bootstrap-4.1.0.css">
+        <link rel="stylesheet" href="./stylesheets/leaflet-1.3.1.css">
+        <link rel="stylesheet" href="./stylesheets/milugar-1.0.0.css">
+    </head>
+    <body>
+
+        <!-- This page is shown when loading -->
+        <div class="page" id="page-loading">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <img src="./images/logo-milugar.png" class="logo d-inline">
+                            <h3 class="text-white">
+                                MiLugar
+                            </h3>
+                            <img src="./images/spinner-milugar.gif" class="d-inline" id="" alt="Cargando...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- This page is shown when logging in -->
+        <div class="page" id="page-login">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <img src="./images/logo-milugar.png" class="logo d-inline">
+                            <h3 class="text-white">
+                                MiLugar
+                            </h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                Inicio de Sesión
+                            </div>
+                            <div class="card-body">
+                                <form id="form-login">
+                                    <div class="form-group">
+                                        <label for="username">
+                                            Nombre de Usuario
+                                        </label>
+                                        <input type="email" class="form-control" name="username" placeholder="Ejemplo: johndoe@milugar.cl">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">
+                                            Contraseña
+                                        </label>
+                                        <input type="password" class="form-control" name="password" placeholder="***">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" id="form-login-button" class="btn btn-primary btn-lg btn-block">
+                                            Iniciar Sesión
+                                        </button>
+                                        <button type="button" id="form-register-button" class="btn btn-link btn-block" data-href="#page-register">
+                                            Registrarse
+                                        </button>
+                                        <button type="button" id="form-forgot-button" class="btn btn-link btn-block" data-href="#page-forgot">
+                                            ¿Olvidó su contraseña?
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page" id="page-register">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <img src="./images/logo-milugar.png" class="logo d-inline">
+                            <h3 class="text-white">
+                                MiLugar
+                            </h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                Registro de Usuario
+                            </div>
+                            <div class="card-body">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page" id="page-forgot">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <img src="./images/logo-milugar.png" class="logo d-inline">
+                            <h3 class="text-white">
+                                MiLugar
+                            </h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                Recuperación de Contraseña
+                            </div>
+                            <div class="card-body">
+                                <form id="form-forgot">
+                                    <div class="form-group">
+                                        <label for="username">
+                                            Nombre de Usuario
+                                        </label>
+                                        <input type="email" class="form-control" name="username" placeholder="Ejemplo: johndoe@milugar.cl">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" id="form-recover-password-button" class="btn btn-primary btn-lg btn-block">
+                                            Recuperar Contraseña
+                                        </button>
+                                        <button type="button" class="btn btn-link btn-block" data-href="#page-login">
+                                            Iniciar Sesión
+                                        </button>
+                                        <button type="button" class="btn btn-link btn-block" data-href="#page-register">
+                                            ¿No tienes cuenta de usuario?
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page" id="page-map">
+            <div id="map"></div>
+            <div class="container-fluid" id="map-controls">
+                <button class="btn btn-primary">
+                    Menú
+                </button>
+            </div>
+        </div>
+
+        <div class="page" id="page-new-parking">
+            <div class="container-fluid">
+
+            </div>
+        </div>
+
+        <div class="page" id="page-new-report">
+            <div class="container-fluid">
+
+            </div>
+        </div>
+
+        <div class="page" id="page-new-contact">
+            <div class="container-fluid">
+
+            </div>
+        </div>
+
+        <div class="page" id="page-about-us">
+            <div class="container-fluid">
+
+            </div>
+        </div>
+
+        <div class="page" id="page-11">
+
+        </div>
+
+        <div class="page" id="page-12"></div>
+        <div class="page" id="page-13"></div>
+        <div class="page" id="page-14"></div>
+        <div class="page" id="page-15"></div>
+        <div class="page" id="page-16"></div>
+        <div class="page" id="page-17"></div>
+        <div class="page" id="page-18"></div>
+        <div class="page" id="page-19"></div>
+        <div class="page" id="page-20"></div>
+        <div class="page" id="page-21"></div>
+        <div class="page" id="page-22"></div>
+        <div class="page" id="page-23"></div>
+        <div class="page" id="page-24"></div>
+        <div class="page" id="page-25"></div>
+        <div class="page" id="page-26"></div>
+        <div class="page" id="page-27"></div>
+        <div class="page" id="page-28"></div>
+        <div class="page" id="page-29"></div>
+        <div class="page" id="page-30"></div>
+        <div class="page" id="page-31"></div>
+        <div class="page" id="page-32"></div>
+        <div class="page" id="page-33"></div>
+        <div class="page" id="page-34"></div>
+        <div class="page" id="page-35"></div>
+        <div class="page" id="page-36"></div>
+        <div class="page" id="page-37"></div>
+        <div class="page" id="page-38"></div>
+        <div class="page" id="page-39"></div>
+        <div class="page" id="page-40"></div>
+        <div class="page" id="page-41"></div>
+        <div class="page" id="page-42"></div>
+        <div class="page" id="page-43"></div>
+        <div class="page" id="page-44"></div>
+        <div class="page" id="page-45"></div>
+        <div class="page" id="page-46"></div>
+        <div class="page" id="page-47"></div>
+        <div class="page" id="page-48"></div>
+        <div class="page" id="page-49"></div>
+        <div class="page" id="page-50"></div>
+
+        <script src="./javascripts/jquery-3.1.1.js"></script>
+        <script src="./javascripts/jquery-mobile-events-1.0.9.js"></script>
+        <script src="./javascripts/popper-1.14.3.js"></script>
+        <script src="./javascripts/tooltip-1.2.0.js"></script>
+        <script src="./javascripts/bootstrap-4.1.0.js"></script>
+        <script src="./javascripts/leaflet-1.3.1.js"></script>
+        <script src="./javascripts/milugar-1.0.0.js"></script>
+    </body>
+</html>

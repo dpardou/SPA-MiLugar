@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>Mi Lugar</title>
+        <link rel="stylesheet" href="./stylesheets/bootstrap-4.1.0.css">
+        <link rel="stylesheet" href="./stylesheets/leaflet-1.3.1.css">
+        <link rel="stylesheet" href="./stylesheets/milugar-1.0.0.css">
+    </head>
+    <body>
+
+        <!-- Menú Colapsable -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" data-href="#page-index">
+            <img src="./images/logo-milugar.png" width="30" height="30" class="d-inline-block align-top" alt="" id="logo-aplicacionx">
+            MiLugar
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active cerrarMenu">
+                <a class="nav-link" data-href="#page-index">Inicio <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" data-href="#page-login">Login <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" data-href="#page-register">Registro <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" data-href="#page-forgot">Recuperar Contraseña <span class="sr-only">(current)</span></a>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Filtro
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Por Comuna</a>
+                  <ul>
+                    <li><a href="#">Filtrar por Comuna</a>
+                      <select name="menu-filtro-comuna" id="menu-filtro-comuna"></select>
+                    </li>
+                    <a class="dropdown-item" href="#">Por Km</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" data-href="#page-newParking">Registrar Nuevo Estacionamiento <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" data-href="#page-report">Denunciar <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" data-href="#page-contact">Contactenos <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" data-href="#page-rrss">Redes Sociales <span class="sr-only">(current)</span></a>
+                <ul>
+                  <li><a href="http://www.facebook.com">Facebook</a></li>
+                  <li><a href="http://www.instagram.com">Instagram</a></li>
+                  <li><a href="http://www.twetter.com">Twitter</a><i class="fab fa-twitter"></i></li>
+                  <li><a href="http://www.youtube.com">Youtube</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <!-- Página loading -->
+        <div class="page" id="page-loading">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <img src="./images/logo-milugar.png" class="logo d-inline">
+                            <h3 class="text-white">
+                                MiLugar
+                            </h3>
+                            <img src="./images/spinner-milugar.gif" class="d-inline" id="" alt="Cargando...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página principal o de inicio de la app -->
+        <div class="page" id="page-index">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <img src="./images/logo-milugar.png" class="logo d-inline">
+                            <h3 class="text-white">
+                                MiLugar
+                            </h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+
+                            </div>
+                            <div class="card-body">
+                                <form id="form-index">
+                                    <div class="form-group">
+                                        <button type="button" id="form-login-button" class="btn btn-primary btn-lg btn-block" data-href="#page-login">
+                                            Iniciar Sesión
+                                        </button>
+                                        <button type="button" id="form-register-button" class="btn btn-primary btn-lg btn-block" data-href="#page-register">
+                                            Registrarse
+                                        </button>
+                                        <button type="button" id="form-guess-button" class="btn btn-primary btn-lg btn-block" data-href="#page-map">
+                                            Ingresar como Invitado
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página login-->
+
+        <div class="page" id="page-login">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <img src="./images/logo-milugar.png" class="logo d-inline">
+                            <h3 class="text-white">
+                                MiLugar
+                            </h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                Inicio de Sesión
+                            </div>
+                            <div class="card-body">
+                              <form id="form-login">
+                                  <div class="form-group">
+                                      <label for="username">
+                                          Nombre de Usuario
+                                      </label>
+                                      <input type="email" class="form-control" name="username" placeholder="Ejemplo: johndoe@milugar.cl">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="password">
+                                          Contraseña
+                                      </label>
+                                      <input type="password" class="form-control" name="password" placeholder="***">
+                                  </div>
+                                  <div class="form-group">
+                                      <button type="button" id="form-login-button" class="btn btn-primary btn-lg btn-block" data-href="#page-map">
+                                          Iniciar Sesión
+                                      </button>
+                                      <button type="button" id="form-register-button" class="btn btn-link btn-block" data-href="#page-register">
+                                          Registrarse
+                                      </button>
+                                      <button type="button" id="form-forgot-button" class="btn btn-link btn-block" data-href="#page-forgot">
+                                          ¿Olvidó su contraseña?
+                                      </button>
+                                  </div>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página de Registro nuevo usuario-->
+
+        <div class="page" id="page-register">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <img src="./images/logo-milugar.png" class="logo d-inline">
+                            <h3 class="text-white">
+                                MiLugar
+                            </h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                Registro de Nuevo Usuario
+                            </div>
+                            <div class="card-body">
+                                <form id="form-forgot">
+                                  <div class="card">
+                                    <div class="card-header">
+                                      Ingrese sus datos para Registrarse
+                                    </div>
+                                    <div class="card-body">
+                                      <div class="form-group">
+                                        <label for="register-name">
+                                          Nombre
+                                        </label>
+                                        <input type="text" class="form-control" id="register-name" name="register-name" placeholder="Ingrese su Nombre">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="register-paterno">
+                                          Apellido Paterno
+                                        </label>
+                                        <input type="text" class="form-control" id="register-paterno" name="register-paterno" placeholder="Ingrese su Apellido Paterno">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="register-materno">
+                                          Apellido Materno
+                                        </label>
+                                        <input type="text" class="form-control" id="register-Materno" name="register-Materno" placeholder="Ingrese su Apellido Materno">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="register-email">
+                                          Email (Usuario)
+                                        </label>
+                                        <input type="email" class="form-control" id="register-email" name="register-email" placeholder="Ingrese su Correo Electrónico">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="register-reEmail">
+                                          Reingrese su Email
+                                        </label>
+                                        <input type="email" class="form-control" id="register-reEmail" name="register-reEmail" placeholder="Vuelva a ingresar su Correo Electrónico">
+                                      </div>
+                                      <div class="campo">
+                                        <label for="register-password">
+                                          Contraseña
+                                        </label>
+                                        <input type="password" class="form-control" id="register-password" name="register-password" placeholder="Ingrese su contraseña">
+                                      </div>
+                                      <div class="campo">
+                                        <label for="register-rePassword">
+                                          Reingrese su Contraseña
+                                        </label>
+                                        <input type="password" class="form-control" id="register-rePassword" name="register-rePassword" placeholder="Vuelva a ingresar su contraseña">
+                                      </div>
+                                      <main>
+                                        <form action="#" method="post">
+                                            <div class="form-body">
+                                              <button type="button" id="form-register-button" class="btn btn-primary btn-block" type="button" data-href="#page-index">Registrarse</button></a>
+                                            </div>
+                                            <div class="form-body">
+                                              <button type="button" id="form-cancell-button" class="btn btn-primary btn-block" type="button" data-href="#page-index">Cancelar</button></a>
+                                            </div>
+                                        </form>
+                                      </main>
+                                    </div>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página recordar contraseña-->
+
+        <div class="page" id="page-forgot">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <img src="./images/logo-milugar.png" class="logo d-inline">
+                            <h3 class="text-white">
+                                MiLugar
+                            </h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                Recuperación de Contraseña
+                            </div>
+                            <div class="card-body">
+                                <form id="form-forgot">
+                                    <div class="form-group">
+                                        <label for="username">
+                                            Nombre de Usuario
+                                        </label>
+                                        <input type="email" class="form-control" name="username" placeholder="Ejemplo: johndoe@milugar.cl">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" id="form-recover-password-button" class="btn btn-primary btn-lg btn-block">
+                                            Recuperar Contraseña
+                                        </button>
+                                        <button type="button" id="form-login-button" class="btn btn-link btn-block" data-href="#page-login">
+                                            Iniciar Sesión
+                                        </button>
+                                        <button type="button" id="form-noUser-button" class="btn btn-link btn-block" data-href="#page-register">
+                                            ¿No tienes cuenta de usuario?
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página Mapa-->
+
+        <div class="page" id="page-map">
+            <div id="map"></div>
+            <div class="container-fluid" id="map-controls">
+
+            </div>
+        </div>
+
+        <!-- Página Denuncia -->
+        <div class="page" id="page-report">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <img src="./images/logo-milugar.png" class="logo d-inline">
+                            <h3 class="text-white">
+                                MiLugar
+                            </h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+
+                            </div>
+                            <div class="card-body">
+                                <form id="form-report">
+                                  <div class="container">
+                                    <p class="text-center">
+                                      <label class="btn btn-primary btn-lg d-inline btn-block text-center" for="camera">
+                                        <!--img src="./images/camera.png" style="width:5vw;height:5vh;"-->
+                                        Tomar Fotografía
+                                        <input type="file" name="camera" id="camera" access="image/*" capture/>
+                                      </label>
+                                    </p>
+                                  </div>
+
+                                  <div class="card">
+                                    <div class="card-header">
+                                      Llenar los siguientes datos para realizar la denuncia
+                                    </div>
+                                    <div class="card-body">
+                                      <div class="form-group">
+                                        <div class="card-header">
+                                          <label for="denuncia-comuna">
+                                            Comuna:
+                                          </label>
+                                          <div class="campo">
+                                            <select name="comuna" id="comuna"></select>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-grupo">
+                                        <div class="card-header">
+                                          <label for="denuncia--orientacion">
+                                            Orientación:
+                                          </label>
+                                          <div class="campo">
+                                            <input type="radio" id="denuncia-orientacion" name="denuncia-orientacion" value="norte"><a id="sub-titulo">  Norte</a>
+                                          </div>
+                                          <div class="campo">
+                                            <input type="radio" id="denuncia-orientacion" name="denuncia-orientacion" value="sur"><a id="sub-titulo">  Sur</a>
+                                          </div>
+                                          <div class="campo">
+                                            <input type="radio" id="denuncia-orientacion" name="denuncia-orientacion" value="oriente"><a id="sub-titulo">  Oriente</a>
+                                          </div>
+                                          <div class="campo">
+                                            <input type="radio" id="denuncia-orientacion" name="denuncia-orientacion" value="poniente"><a id="sub-titulo">  Poniente</a>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-grupo">
+                                        <div class="card-header">
+                                          <label for="denuncia-vereda">
+                                            Vereda:
+                                          </label>
+                                          <div class="campo">
+                                            <input type="radio" id="denuncia-vereda" name="denuncia-vereda" value="norte"><a id="sub-titulo">  Norte</a>
+                                          </div>
+                                          <div class="campo">
+                                            <input type="radio" id="denuncia-vereda" name="denuncia-vereda" value="sur"><a id="sub-titulo">  Sur</a>
+                                          </div>
+                                          <div class="campo">
+                                            <input type="radio" id="denuncia-vereda" name="denuncia-vereda" value="oriente"><a id="sub-titulo">  Oriente</a>
+                                          </div>
+                                          <div class="campo">
+                                            <input type="radio" id="denuncia-vereda" name="denuncia-vereda" value="poniente"><a id="sub-titulo">  Poniente</a>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-grupo">
+                                        <div class="card-header">
+                                          <label for="denuncia-senalizacion">
+                                            Tipo Señalización:
+                                          </label>
+                                          <div class="campo">
+                                            <input type="checkbox" id="denuncia-senalizacion" name="denuncia-senalizacion" value="senaletica"><a id="sub-titulo">  Señaletica</a>
+                                          </div>
+                                          <div class="campo">
+                                            <input type="checkbox" id="denuncia-senalizacion" name="denuncia-senalizacion" value="demarcacion"><a id="sub-titulo">  Demarcación</a>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-grupo">
+                                        <div class="card-header">
+                                            <label for="denuncia-senalizacion">
+                                              Coordenadas
+                                            </label>
+                                            <div class="campo">
+                                              <input type="text" id="denuncia-coordenadas-x" disabled="true">
+                                              <input type="text" id="denuncia-coordenadas-y" disabled="true">
+                                              <button type="button" class="btn btn-primary btn-lg btn-block" onclick="getLocation()">Obtener Coordenadas</button>
+                                              <p id="demo"></p>
+                                              <script>
+                                              var x = document.getElementById("demo");
+                                              function getLocation() {
+                                                  if (navigator.geolocation) {
+                                                      navigator.geolocation.getCurrentPosition(showPosition);
+                                                  } else {
+                                                      x.innerHTML = "Geolocation is not supported by this browser.";
+                                                  }
+                                              }
+                                              function showPosition(position) {
+                                                  document.getElementById("denuncia-coordenadas-x").value= position.coords.latitude;
+                                                  document.getElementById("denuncia-coordenadas-y").value= position.coords.longitude;
+                                              }
+                                              </script>
+                                            </div>
+                                        </div>
+                                      </div>
+
+                                      <form action="#" method="post">
+                                        <div class="form-body">
+                                          <button type="button" id="form-sendReport-button" class="btn btn-primary btn-block" type="button" data-href="#page-index">Enviar Denuncia</button></a>
+                                        </div>
+                                          <div class="form-body">
+                                            <button type="button" id="form-cancell-button" class="btn btn-primary btn-block" type="button" data-href="#page-index">Cancelar</button></a>
+                                          </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página Nuevo Estacionamiento -->
+        <div class="page" id="page-newParking">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <img src="./images/logo-milugar.png" class="logo d-inline">
+                            <h3 class="text-white">
+                                MiLugar
+                            </h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                              Llenar los siguientes datos para solicitar el registro
+                            </div>
+                            <div class="card-body">
+                                <form id="form-newParking">
+                                  <div class="card-body">
+                                    <div class="form-group">
+                                      <div class="card-header">
+                                        <label for="registro-estacionamiento-cantidad">
+                                          Cantidad de Estacionamiento(s):
+                                        </label>
+                                        <div class="campo">
+                                          <input type="radio" id="registro-estacionamiento-cantidad" name="registro-estacionamiento-cantidad" value="1"><a id="sub-titulo">  1</a>
+                                        </div>
+                                        <div class="campo">
+                                          <input type="radio" id="registro-estacionamiento-cantidad" name="registro-estacionamiento-cantidad" value="2"><a id="sub-titulo">  2</a>
+                                        </div>
+                                        <div class="campo">
+                                          <input type="radio" id="registro-estacionamiento-cantidad" name="registro-estacionamiento-cantidad" value="3"><a id="sub-titulo">  3</a>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-grupo">
+                                      <div class="card-header">
+                                        <label for="registro-estacionamiento-orientacion">
+                                          Orientación:
+                                        </label>
+                                        <div class="campo">
+                                          <input type="radio" id="registro-estacionamiento-orientacion" name="registro-estacionamiento-orientacion" value="norte"><a id="sub-titulo">  Norte</a>
+                                        </div>
+                                        <div class="campo">
+                                          <input type="radio" id="registro-estacionamiento-orientacion" name="registro-estacionamiento-orientacion" value="sur"><a id="sub-titulo">  Sur</a>
+                                        </div>
+                                        <div class="campo">
+                                          <input type="radio" id="registro-estacionamiento-orientacion" name="registro-estacionamiento-orientacion" value="oriente"><a id="sub-titulo">  Oriente</a>
+                                        </div>
+                                        <div class="campo">
+                                          <input type="radio" id="registro-estacionamiento-orientacion" name="registro-estacionamiento-orientacion" value="poniente"><a id="sub-titulo">  Poniente</a>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-grupo">
+                                      <div class="card-header">
+                                        <label for="registro-estacionamiento-vereda">
+                                          Vereda:
+                                        </label>
+                                        <div class="campo">
+                                          <input type="radio" id="registro-estacionamiento-vereda" name="registro-estacionamiento-vereda" value="norte"><a id="sub-titulo">  Norte</a>
+                                        </div>
+                                        <div class="campo">
+                                          <input type="radio" id="registro-estacionamiento-vereda" name="registro-estacionamiento-vereda" value="sur"><a id="sub-titulo">  Sur</a>
+                                        </div>
+                                        <div class="campo">
+                                          <input type="radio" id="registro-estacionamiento-vereda" name="registro-estacionamiento-vereda" value="oriente"><a id="sub-titulo">  Oriente</a>
+                                        </div>
+                                        <div class="campo">
+                                          <input type="radio" id="registro-estacionamiento-vereda" name="registro-estacionamiento-vereda" value="poniente"><a id="sub-titulo">  Poniente</a>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-grupo">
+                                      <div class="card-header">
+                                        <label for="registro-estacionamiento-senalizacion">
+                                          Tipo Señalización:
+                                        </label>
+                                        <div class="campo">
+                                          <input type="checkbox" id="registro-estacionamiento-senalizacion" name="registro-estacionamiento-senalizacion" value="senaletica"><a id="sub-titulo">  Señaletica</a>
+                                        </div>
+                                        <div class="campo">
+                                          <input type="checkbox" id="registro-estacionamiento-senalizacion" name="registro-estacionamiento-senalizacion" value="demarcacion"><a id="sub-titulo">  Demarcación</a>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-grupo">
+                                      <div class="card-header">
+                                          <label for="registro-estacionamiento-coordenadas">
+                                            Coordenadas
+                                          </label>
+                                          <div class="campo">
+                                            <input type="text" id="registro-estacionamiento-coordenadas-x" disabled="true">
+                                            <input type="text" id="registro-estacionamiento-coordenadas-y" disabled="true">
+                                            <button type="button" onclick="getLocation()">Obtener Coordenadas</button>
+                                            <p id="demo"></p>
+                                            <script>
+                                            var x = document.getElementById("demo");
+                                            function getLocation() {
+                                                if (navigator.geolocation) {
+                                                    navigator.geolocation.getCurrentPosition(showPosition);
+                                                } else {
+                                                    x.innerHTML = "Geolocation is not supported by this browser.";
+                                                }
+                                            }
+                                            function showPosition(position) {
+                                                document.getElementById("registro-estacionamiento-coordenadas-x").value= position.coords.latitude;
+                                                document.getElementById("registro-estacionamiento-coordenadas-y").value= position.coords.longitude;
+                                            }
+                                            </script>
+                                          </div>
+                                      </div>
+                                    </div>
+
+                                    <form action="#" method="post">
+                                      <div class="form-body">
+                                        <button type="button" id="form-newParking-button" class="btn btn-primary btn-block" type="button" data-href="#page-index">Registrar Estacionamiento</button></a>
+                                      </div>
+                                        <div class="form-body">
+                                          <button type="button" id="form-cancell-button" class="btn btn-primary btn-block" type="button" data-href="#page-index">Cancelar</button></a>
+                                        </div>
+                                    </form>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página de Contacto -->
+
+        <div class="page" id="page-contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center">
+                            <img src="./images/logo-milugar.png" class="logo d-inline">
+                            <h3 class="text-white">
+                                MiLugar
+                            </h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                Contáctenos
+                            </div>
+                            <div class="card-body">
+                                <form id="form-contact">
+                                  <div class="card">
+                                    <div class="card-header">
+                                      Llene el siguiente formulario
+                                    </div>
+                                    <div class="card-body">
+                                      <div class="form-group">
+                                        <label for="contact-name">
+                                          Nombre
+                                        </label>
+                                        <input type="text" class="form-control" id="contact-name" name="contact-name" placeholder="Ingrese su Nombre">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="contact-email">
+                                          Email
+                                        </label>
+                                        <input type="email" class="form-control" id="contact-email" name="contact-email" placeholder="Ingrese su Correo Electrónico">
+                                      </div>
+                                      <label for="contact-message">
+                                          Mensaje
+                                        </label>
+                                        <textarea name="contact-message" rows="8" cols="80" class="form-control" id="contact-message" name="contact-message" placeholder="Mensaje"></textarea>
+                                      </div>
+                                      <main>
+                                        <form action="#" method="post">
+                                            <div class="form-body">
+                                              <button type="button" id="form-register-button" class="btn btn-primary btn-block" type="button" data-href="#page-index">Registrarse</button></a>
+                                            </div>
+                                            <div class="form-body">
+                                              <button type="button" id="form-cancell-button" class="btn btn-primary btn-block" type="button" data-href="#page-index">Cancelar</button></a>
+                                            </div>
+                                        </form>
+                                      </main>
+                                    </div>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="./javascripts/jquery-3.1.1.js"></script>
+        <script src="./javascripts/jquery-mobile-events-1.0.9.js"></script>
+        <script src="./javascripts/popper-1.14.3.js"></script>
+        <script src="./javascripts/tooltip-1.2.0.js"></script>
+        <script src="./javascripts/bootstrap-4.1.0.js"></script>
+        <script src="./javascripts/leaflet-1.3.1.js"></script>
+        <script src="./javascripts/milugar-1.0.0.js"></script>
+    </body>
+</html>

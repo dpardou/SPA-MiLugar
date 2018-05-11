@@ -1,0 +1,42 @@
+body {
+    background-color: rgb(44, 94, 165);
+}
+
+.page {
+    visibility: hidden;
+    display: none;
+    position: absolute;
+}
+
+.page.page-active {
+    visibility: visible;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+.logo {
+    visibility: visible;
+    display: block;
+    width: 20vw;
+    margin: 2vh auto;
+}
+
+#page-map #map {
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+#page-map #map-controls {
+    display: inherit;
+    visibility: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+}
