@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mi Lugar</title>
         <link rel="stylesheet" href="./stylesheets/bootstrap-4.1.0.css">
         <link rel="stylesheet" href="./stylesheets/leaflet-1.3.1.css">
@@ -184,7 +184,7 @@
                                 Registro de Nuevo Usuario
                             </div>
                             <div class="card-body">
-                                <form id="form-forgot">
+                                <form id="form-registration">
                                   <div class="card">
                                     <div class="card-header">
                                       Ingrese sus datos para Registrarse
@@ -194,53 +194,53 @@
                                         <label for="register-name">
                                           Nombre
                                         </label>
-                                        <input type="text" class="form-control" id="register-name" name="register-name" placeholder="Ingrese su Nombre">
+                                        <input type="text" class="form-control" id="register-name" name="nombre" placeholder="Ingrese su Nombre">
                                       </div>
                                       <div class="form-group">
                                         <label for="register-paterno">
                                           Apellido Paterno
                                         </label>
-                                        <input type="text" class="form-control" id="register-paterno" name="register-paterno" placeholder="Ingrese su Apellido Paterno">
+                                        <input type="text" class="form-control" id="register-paterno" name="apellido_paterno" placeholder="Ingrese su Apellido Paterno">
                                       </div>
                                       <div class="form-group">
                                         <label for="register-materno">
                                           Apellido Materno
                                         </label>
-                                        <input type="text" class="form-control" id="register-Materno" name="register-Materno" placeholder="Ingrese su Apellido Materno">
+                                        <input type="text" class="form-control" id="register-Materno" name="apellido_materno" placeholder="Ingrese su Apellido Materno">
                                       </div>
                                       <div class="form-group">
                                         <label for="register-email">
                                           Email (Usuario)
                                         </label>
-                                        <input type="email" class="form-control" id="register-email" name="register-email" placeholder="Ingrese su Correo Electrónico">
+                                        <input type="email" class="form-control" id="register-email" name="email" placeholder="Ingrese su Correo Electrónico">
                                       </div>
                                       <div class="form-group">
                                         <label for="register-reEmail">
                                           Reingrese su Email
                                         </label>
-                                        <input type="email" class="form-control" id="register-reEmail" name="register-reEmail" placeholder="Vuelva a ingresar su Correo Electrónico">
+                                        <input type="email" class="form-control" id="register-reEmail" placeholder="Vuelva a ingresar su Correo Electrónico">
                                       </div>
                                       <div class="campo">
                                         <label for="register-password">
                                           Contraseña
                                         </label>
-                                        <input type="password" class="form-control" id="register-password" name="register-password" placeholder="Ingrese su contraseña">
+                                        <input type="password" class="form-control" id="register-password" name="password" placeholder="Ingrese su contraseña">
                                       </div>
                                       <div class="campo">
                                         <label for="register-rePassword">
                                           Reingrese su Contraseña
                                         </label>
-                                        <input type="password" class="form-control" id="register-rePassword" name="register-rePassword" placeholder="Vuelva a ingresar su contraseña">
+                                        <input type="password" class="form-control" id="register-rePassword" placeholder="Vuelva a ingresar su contraseña">
                                       </div>
                                       <main>
-                                        <form action="#" method="post">
+                                        <!--form action="#" method="post"-->
                                             <div class="form-body">
-                                              <button type="button" id="form-register-button" class="btn btn-primary btn-block" type="button" data-href="#page-index">Registrarse</button></a>
+                                              <button type="button" id="form-registration-button" class="btn btn-primary btn-block" type="button">Registrarse</button></a>
                                             </div>
                                             <div class="form-body">
                                               <button type="button" id="form-cancell-button" class="btn btn-primary btn-block" type="button" data-href="#page-index">Cancelar</button></a>
                                             </div>
-                                        </form>
+                                        <!--/form-->
                                       </main>
                                     </div>
                                   </div>
@@ -299,9 +299,6 @@
 
         <div class="page" id="page-map">
             <div id="map"></div>
-            <div class="container-fluid" id="map-controls">
-
-            </div>
         </div>
 
         <!-- Página Denuncia -->
@@ -401,37 +398,22 @@
                                         </div>
                                       </div>
 
-                                      <div class="form-grupo">
+                                      <div class="form-grupo" style="visibility: hidden; display: none;">
                                         <div class="card-header">
                                             <label for="denuncia-senalizacion">
                                               Coordenadas
                                             </label>
                                             <div class="campo">
-                                              <input type="text" id="denuncia-coordenadas-x" disabled="true">
-                                              <input type="text" id="denuncia-coordenadas-y" disabled="true">
-                                              <button type="button" class="btn btn-primary btn-lg btn-block" onclick="getLocation()">Obtener Coordenadas</button>
+                                              <input type="text" name="latitud" id="denuncia-coordenadas-x" disabled="true">
+                                              <input type="text" name="longitud" id="denuncia-coordenadas-y" disabled="true">
                                               <p id="demo"></p>
-                                              <script>
-                                              var x = document.getElementById("demo");
-                                              function getLocation() {
-                                                  if (navigator.geolocation) {
-                                                      navigator.geolocation.getCurrentPosition(showPosition);
-                                                  } else {
-                                                      x.innerHTML = "Geolocation is not supported by this browser.";
-                                                  }
-                                              }
-                                              function showPosition(position) {
-                                                  document.getElementById("denuncia-coordenadas-x").value= position.coords.latitude;
-                                                  document.getElementById("denuncia-coordenadas-y").value= position.coords.longitude;
-                                              }
-                                              </script>
                                             </div>
                                         </div>
                                       </div>
 
                                       <form action="#" method="post">
                                         <div class="form-body">
-                                          <button type="button" id="form-sendReport-button" class="btn btn-primary btn-block" data-href="#page-index">Enviar Denuncia</button></a>
+                                          <button type="button" id="form-report-button" class="btn btn-primary btn-block" data-href="#page-index">Enviar Denuncia</button></a>
                                         </div>
                                           <div class="form-body">
                                             <button type="button" id="form-cancell-button" class="btn btn-primary btn-block" data-href="#page-index">Cancelar</button></a>
@@ -598,7 +580,7 @@
                                 Contáctenos
                             </div>
                             <div class="card-body">
-                                <form id="form-contact">
+                                <form id="form-contact" method="POST">
                                   <div class="card">
                                     <div class="card-header">
                                       Llene el siguiente formulario
@@ -608,27 +590,27 @@
                                         <label for="contact-name">
                                           Nombre
                                         </label>
-                                        <input type="text" class="form-control" id="contact-name" name="contact-name" placeholder="Ingrese su Nombre">
+                                        <input type="text" class="form-control" id="contact-name" name="nombre" placeholder="Ingrese su Nombre">
                                       </div>
                                       <div class="form-group">
                                         <label for="contact-email">
                                           Email
                                         </label>
-                                        <input type="email" class="form-control" id="contact-email" name="contact-email" placeholder="Ingrese su Correo Electrónico">
+                                        <input type="email" class="form-control" id="contact-email" name="email" placeholder="Ingrese su Correo Electrónico">
                                       </div>
                                       <label for="contact-message">
                                           Mensaje
                                         </label>
-                                        <textarea name="contact-message" rows="8" cols="80" class="form-control" id="contact-message" name="contact-message" placeholder="Mensaje"></textarea>
+                                        <textarea name="mensaje" rows="8" cols="80" class="form-control" id="contact-message" name="contact-message" placeholder="Mensaje"></textarea>
                                       </div>
                                       <main>
-                                        <form action="#" method="post">
+                                        <!--form action="guardarContacto" method="post"-->
                                             <div class="form-body">
-                                              <button type="button" id="form-register-button" class="btn btn-primary btn-block" type="button" data-href="#page-index">Registrarse</button></a>
+                                              <button type="button" id="form-contact-button" class="btn btn-primary btn-block">Enviar</button></a>
                                             </div>
                                             <div class="form-body">
-                                              <button type="button" id="form-cancell-button" class="btn btn-primary btn-block" type="button" data-href="#page-index">Cancelar</button></a>
-                                            </div>
+                                              <button type="button" id="form-cancell-button" class="btn btn-primary btn-block" data-href="#page-index">Cancelar</button></a>
+                                            <!--/div-->
                                         </form>
                                       </main>
                                     </div>
@@ -685,7 +667,7 @@
 
 
         <script src="./javascripts/jquery-3.1.1.js"></script>
-        <script src="./javascripts/jquery-mobile-events-1.0.9.js"></script>
+        <!--<script src="./javascripts/jquery-mobile-events-1.0.9.js"></script>-->
         <script src="./javascripts/popper-1.14.3.js"></script>
         <script src="./javascripts/tooltip-1.2.0.js"></script>
         <script src="./javascripts/bootstrap-4.1.0.js"></script>

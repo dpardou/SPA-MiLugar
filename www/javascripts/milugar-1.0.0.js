@@ -10,6 +10,15 @@ var props = {
     pointer: null,
 }
 
+var parkingIcon = L.icon({
+  iconUrl: './images/parking.png',
+  iconSize: [48, 48]
+})
+
+var carIcon = L.icon({
+  iconUrl: './images/leaflet-1.3.1/marker-icon.png',
+  iconSize: [25, 41]
+})
 // Geolocation.
 
 watcher = navigator.geolocation.watchPosition(function (pos) {
@@ -18,9 +27,9 @@ watcher = navigator.geolocation.watchPosition(function (pos) {
     props.longitude = pos.coords.longitude
 
     if (props.map !== null) {
-        props.map.setView([props.latitude, props.longitude], 13)
+        props.map.setView([props.latitude, props.longitude], 16)
         if (props.pointer != null) props.map.removeLayer(props.pointer)
-        props.pointer = L.marker([props.latitude, props.longitude]).addTo(props.map).bindPopup()
+        props.pointer = L.marker([props.latitude, props.longitude], {icon: carIcon}).addTo(props.map).bindPopup("<table><tr><th>latitud</th><td>" + props.latitude + "</td></tr><tr><th>longitud</th><td>" + props.longitude + "</td></tr></table>")
     }
 })
 
@@ -32,6 +41,9 @@ var loaders = {
         loadPage("#page-index")
       }, 3000)
     },
+    "#page-index": function () {
+
+    },
     "#page-login": function () {
 
     },
@@ -41,10 +53,21 @@ var loaders = {
     "#page-forgot": function () {
 
     },
+    "#page-report": function () {
+        $("#denuncia-coordenadas-x").val(props.latitude)
+        $("#denuncia-coordenadas-y").val(props.longitude)
+    },
     "#page-map": function () {
         if (props.map == null) {
-            props.map = L.map('map').setView([props.latitude, props.longitude], 13);
+            props.map = L.map('map')
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '' }).addTo(props.map);
+            props.map.setView([props.latitude, props.longitude], 16);
+
+            $.get("http://138.197.183.209/estacionamientos", function(data) {
+                $(data).each(function(k, v) {
+                    L.marker([v.latitud, v.longitud], { icon: parkingIcon }).addTo(props.map).bindPopup("<p>" + v.calle + " " + v.numero + "<br/><strong>Cantidad:</strong> " + v.cantidad + " estacionamiento(s).</p>")
+                })
+            }, "json")
         }
         if (props.pointer !== null) props.map.removeLayer(props.pointer)
         props.pointer = L.marker([props.latitude, props.longitude]).addTo(props.map).bindPopup()
@@ -102,3 +125,36 @@ $(document).ready(function(){
 });
 
 $('.avbarSupportedContent').collapse()
+
+$("#form-report-button").on("click tap", function(event) {
+    event.preventDefault();
+
+    var variables = $("#form-report").serialize();
+    $.post("http://138.197.183.209/denuncias", variables, function () {
+        alert("Gracias por contactarnos. Hemos registrado su denuncia correctamente.")
+        loadPage("#page-map")
+    }, "json")
+    console.log(variables);
+})
+
+$("#form-contact-button").on("click tap", function(event) {
+    event.preventDefault();
+
+    var variables = $("#form-contact").serialize();
+    $.post("http://138.197.183.209/contactos", variables, function () {
+        alert("Gracias por contactarnos. Le enviaremos un correo electrónico a la brevedad")
+        loadPage("#page-map")
+    }, "json")
+    console.log(variables);
+})
+
+$("#form-registration-button").on("click tap", function(event) {
+    event.preventDefault();
+
+    var variables = $("#form-registration").serialize();
+    $.post("http://138.197.183.209/usuarios", variables, function () {
+        alert("Gracias por registrarse. Le enviaremos un correo electrónico a la brevedad confirmando su registro")
+        loadPage("#page-map")
+    }, "json")
+    console.log(variables);
+})
